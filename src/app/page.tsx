@@ -84,7 +84,7 @@ function calculateNeuronsSaved(reactionTimeSeconds: number): number {
 
 const generateCase = (caseId: string): PatientCase => {
   const numberOfSymptoms = Math.floor(Math.random() * 3) + 2;
-  let selectedSymptoms: Symptom[] = [];
+  const selectedSymptoms: Symptom[] = [];
   let hasStrokeSymptom = false;
 
   const isActualStrokeCase = Math.random() < 0.6;
