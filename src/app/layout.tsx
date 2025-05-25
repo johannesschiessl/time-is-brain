@@ -8,7 +8,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Time Is Brain",
+  title: "Time Is Brain | Memorics Play",
   description: "A game to learn stroke symptoms",
 };
 

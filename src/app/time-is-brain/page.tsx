@@ -55,6 +55,7 @@ const distractorSymptoms = [
 ];
 
 const allSymptoms = [...realStrokeSymptoms, ...distractorSymptoms];
+console.log(allSymptoms); // TEMP
 
 type Symptom = {
   id: string;
@@ -83,31 +84,23 @@ function calculateNeuronsSaved(reactionTimeSeconds: number): number {
 }
 
 const generateCase = (caseId: string): PatientCase => {
-  const numberOfSymptoms = Math.floor(Math.random() * 3) + 2;
   const selectedSymptoms: Symptom[] = [];
   let hasStrokeSymptom = false;
 
-  const isActualStrokeCase = Math.random() < 0.6;
+  hasStrokeSymptom = Math.random() < 0.5;
 
-  if (isActualStrokeCase) {
+  if (hasStrokeSymptom) {
     const strokeSymptom =
       realStrokeSymptoms[Math.floor(Math.random() * realStrokeSymptoms.length)];
     selectedSymptoms.push(strokeSymptom);
     hasStrokeSymptom = true;
   }
 
-  while (selectedSymptoms.length < numberOfSymptoms) {
-    const randomSymptom =
-      allSymptoms[Math.floor(Math.random() * allSymptoms.length)];
-    if (!selectedSymptoms.find((s) => s.id === randomSymptom.id)) {
-      selectedSymptoms.push(randomSymptom);
-      if (randomSymptom.isStroke) {
-        hasStrokeSymptom = true;
-      }
-    }
+  if (!hasStrokeSymptom) {
+    const distractorSymptom =
+      distractorSymptoms[Math.floor(Math.random() * distractorSymptoms.length)];
+    selectedSymptoms.push(distractorSymptom);
   }
-
-  selectedSymptoms.sort(() => Math.random() - 0.5);
 
   const description = selectedSymptoms.map((s) => s.text).join(", ") + ".";
   const patientImage = `https://avatar.iran.liara.run/public/${Math.floor(Math.random() * 100)}`;
