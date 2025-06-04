@@ -107,7 +107,7 @@ const generateCase = (caseId: string): PatientCase => {
 
   return {
     id: caseId,
-    description: `Person ${description}`,
+    description: description,
     symptoms: selectedSymptoms,
     isStrokeCase: hasStrokeSymptom,
     patientImage,
